@@ -1,0 +1,11 @@
+- acessar projeto com outro usuario github
+- criar fork
+- adicionar repositorio remoto 
+- fazer alteraçoes
+- git rebase -i <hash_anterior ao da alteração> ou HEAD~3 ou os três ultimos commits
+o rebase concatena os comiits em um só, na linha de comando após executar o rebase, é necessário substituir pick por s para informar
+que esses commit serão unificados com o pick principal
+- no github criar o pull request
+-na conta do usuário dono do projeto aceitar ou não o pull request PR 
+
+Outra alternativa ao github é o bitbucket que permite criar repositorio privado
