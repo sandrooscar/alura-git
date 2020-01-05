@@ -135,3 +135,31 @@ Vimos que cada funcionalidade deve ser feita em uma branch separada, e que é co
 Aprendemos também que bugs normalmente são corrigidos em branches separadas, com o prefixo hotfix/
 Além disso, branches específicas para cada release são criadas para realizar os testes e correções de bugs específicos
 
+*** AULA05 - hooks e deploy com git
+Na linha de comando, acesse, dentro da pasta do seu repositório, a pasta .git/hooks;
+
+Dentro dessa pasta, crie o arquivo pre-commit, com o seguinte conteúdo:
+
+#!/bin/sh
+echo "Você está prestes a commitar. :-)"
+Se você estiver em uma plataforma diferente do Windows, digite chmod u+x pre-commit para dar permissão de execução a este arquivo;
+
+Execute alguma alteração qualquer no código;
+
+Digite os comandos git add index.html e git commit -m "Commit teste" para realizar um commit;
+
+Verifique que a mensagem "Você está prestes a commitar. :-)" foi exibida, logo, o seu hook foi executado com sucesso;
+
+Fora desta pasta, crie uma nova pasta chamada web;
+
+Acesse a pasta que você no curso anterior para ser o seu servidor remoto;
+
+Nesta pasta, crie um arquivo chamado post-receive com o seguinte conteúdo:
+
+#!/bin/sh
+git --git-dir={caminho_da_pasta_do_servidor} --work-tree={caminho_da_pasta_web} checkout -f
+Substitua acima {caminho_da_pasta_do_servidor} pelo caminho da pasta criada no curso anterior para ser seu servidor remoto, e {caminho_da_pasta_web} pelo caminho da pasta criada no passo 7;
+
+De volta para a pasta que contém o seu código, execute o comando git push local master para enviar as alterações feitas no passo 4 para o servidor;
+
+Verifique que agora o arquivo index.html está presente na pasta criada no passo 7, ou seja, você fez o deploy da sua aplicação
